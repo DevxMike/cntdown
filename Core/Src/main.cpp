@@ -28,6 +28,7 @@
 #include "APP/system.h"
 #include "APP/display.h"
 #include "APP/timer.h"
+#include "APP/animation.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +50,7 @@
 /* USER CODE BEGIN PV */
 
 const std::array<uint8_t, hex_codes_count> display_manager::hex_codes { 0x3F,
-		0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
+		0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F, 0x00 };
 
 std::array<uint8_t, display_size> display_manager::displayed_codes{
 	0x00, 0x00, 0x00, 0x00
@@ -71,9 +72,13 @@ std::array<std::shared_ptr<push_button>, interface_size> button_manager::keyboar
 
 system_state system_manager::state { system_state::reset_state };
 
+bool button_manager::button_longer_pressed{ false };
+
 bool display_manager::interrupt_flag{ false };
 
 bool time_manager::sync{ false };
+uint8_t time_manager::currently_set{ 0 };
+
 uint8_t time_manager::minutes { 0 };
 uint8_t time_manager::seconds { 0 };
 uint32_t time_manager::seconds_elapsed { 0 };
@@ -132,6 +137,7 @@ int main(void) {
 		button_manager::main();
 		display_manager::main();
 		time_manager::main();
+		animation_manager::main();
 		HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 //	if(HAL_GetTick() - timer > 500){
 //		HAL_GPIO_TogglePin(ACTIVITY_INDICATOR_GPIO_Port, ACTIVITY_INDICATOR_Pin);

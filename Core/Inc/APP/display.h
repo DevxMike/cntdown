@@ -12,7 +12,7 @@
 #include <array>
 #include <cstdint>
 
-constexpr uint8_t hex_codes_count = 10;
+constexpr uint8_t hex_codes_count = 11;
 constexpr uint8_t display_size = 4;
 
 enum display_states{

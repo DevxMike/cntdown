@@ -62,6 +62,8 @@ void hold_push_button::update_button() {
 	case button_state::waiting_longer_press:
 		if (read_button() && (HAL_GetTick() - get_ticks() > 1500)) { // and ticks greater than
 			set_ticks(HAL_GetTick());
+			button_manager::longer_pressed_handler(true);
+
 			state = button_state::waiting_for_release;
 		}
 		else if (!read_button()) {
@@ -71,6 +73,7 @@ void hold_push_button::update_button() {
 
 	case button_state::waiting_for_release:
 		if(!read_button()){
+			button_manager::longer_pressed_handler(false);
 			state = button_state::waiting_for_push;
 		}
 		else if(read_button() && (HAL_GetTick() - get_ticks() > 100)){

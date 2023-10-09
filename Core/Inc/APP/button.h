@@ -52,9 +52,12 @@ public:
 class button_manager {
 private:
 	static std::array<std::shared_ptr<push_button>, interface_size> keyboard;
+	static bool button_longer_pressed;
 
 public:
 	static void main();
+	static bool is_longer_pressed() { return button_longer_pressed; }
+	static bool longer_pressed_handler(bool p) { button_longer_pressed = p; }
 };
 
 #endif
