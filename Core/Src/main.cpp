@@ -57,8 +57,8 @@ std::array<uint8_t, display_size> display_manager::displayed_codes{
 };
 
 std::array<std::shared_ptr<push_button>, interface_size> button_manager::keyboard {
-		std::make_shared<push_button>(TRIG_GPIO_Port, TRIG_Pin,
-				system_manager::TRIG_Callback), std::make_shared<push_button>(
+		std::make_shared<hold_push_button>(TRIG_GPIO_Port, TRIG_Pin,
+				system_manager::TRIG_Callback, system_manager::RST_Callback), std::make_shared<push_button>(
 				SETBTN_GPIO_Port, SETBTN_Pin, system_manager::SET_Callback),
 		std::make_shared<push_button>(RSTBTN_GPIO_Port, RSTBTN_Pin,
 				system_manager::RST_Callback), std::make_shared<push_button>(
@@ -70,7 +70,7 @@ std::array<std::shared_ptr<push_button>, interface_size> button_manager::keyboar
 		std::make_shared<hold_push_button>(DEC_GPIO_Port, DEC_Pin,
 				system_manager::DEC_Callback) };
 
-system_state system_manager::state { system_state::reset_state };
+system_state system_manager::state { system_state::halt_state };
 
 bool button_manager::button_longer_pressed{ false };
 

@@ -18,7 +18,7 @@ void system_manager::main(){
 	if(old_state != state){
 		switch(state){
 		case system_state::reset_state:
-			// reset the clock
+			state = system_state::halt_state;
 			break;
 
 		case system_state::counting_state:
@@ -79,7 +79,7 @@ void system_manager::RST_Callback() {
 //		display_manager::change_content({0x00, 0x00, 0x00, 0x00});
 		time_manager::reset_handler();
 
-		state = system_state::reset_state;
+		state = system_state::halt_state;
 		break;
 	}
 }

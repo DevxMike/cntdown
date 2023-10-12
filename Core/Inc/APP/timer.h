@@ -40,7 +40,7 @@ public:
 	static void next_handler();
 	static void prev_handler();
 
-	static void reset_handler(){ minutes = seconds = 0; }
+	static void reset_handler(){ minutes =3; seconds = 0; }
 
 	static bool timer_not_set() { return (minutes == 0) && (seconds == 0); }
 

@@ -56,6 +56,7 @@ void animation_manager::main(){
 
 		if(blink_count == 3){
 			state = display_time;
+			time_manager::reset_handler();
 		}
 		break;
 

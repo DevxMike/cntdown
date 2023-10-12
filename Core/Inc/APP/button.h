@@ -44,8 +44,19 @@ public:
 };
 
 class hold_push_button : public push_button {
+private:
+	cback_type long_press_cback;
+protected:
+	void long_press_callback() { long_press_cback(); }
 public:
-	hold_push_button(GPIO_TypeDef* _port, uint32_t _pin, cback_type cback) : push_button(_port, _pin, cback) {}
+	hold_push_button(GPIO_TypeDef* _port, uint32_t _pin, cback_type cback, cback_type lp_cback = nullptr) : push_button(_port, _pin, cback) {
+		if(lp_cback == nullptr){
+			long_press_cback = cback;
+		}
+		else{
+			long_press_cback = lp_cback;
+		}
+	}
 	virtual void update_button();
 };
 

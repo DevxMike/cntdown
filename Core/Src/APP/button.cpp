@@ -77,7 +77,7 @@ void hold_push_button::update_button() {
 			state = button_state::waiting_for_push;
 		}
 		else if(read_button() && (HAL_GetTick() - get_ticks() > 100)){
-			callback();
+			long_press_callback();
 			set_ticks(HAL_GetTick());
 		}
 
