@@ -17,7 +17,7 @@ The timer application is intended for embedded systems and uses a combination of
 Components
 
     Animation Manager (animation.h, animation.cpp):
-        Manages the display of animations during system initialization.
+        Manages the display of animations during system operation.
 
     Button Module (button.h):
         Implements classes for handling push buttons and hold push buttons.
