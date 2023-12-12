@@ -10,8 +10,6 @@ Table of Contents
     How to Build
     How to Run
     Functionality
-    Contributing
-    License
 
 Introduction
 
